@@ -7,10 +7,10 @@ const app = express();
 const port = 3000;
 
 const db = new pg.Client({
-    user: "postgres",
+    user: "Changpostgres",
     host: "localhost",
-    database: "budgetify",
-    password: "bbjoe",
+    database: "YOUR_DATABASE",
+    password: "YOUR PASSWORD",
     port: 5432,
 });
 db.connect();
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // GoogleGenerativeAI initialization
-const genAI = new GoogleGenerativeAI("AIzaSyC5ycg47M3uOfahKEhM1QVfqv63HJU0LEU");
+const genAI = new GoogleGenerativeAI("YOUR_API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // Function to generate the budget
