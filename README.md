@@ -24,6 +24,12 @@
 
 ---
 
+## Usage
+- Add your income and expenses using the forms on the homepage.
+- View expense summaries and charts for insights.
+- Use the savings calculator to plan your savings.
+- Generate a personalized budget plan using AI recommendations.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -109,10 +115,3 @@
 
 ### Generated Budget Plan
 ![Generated Budget Plan](images/Generated%20Budget_plan.png)
-
-
-## Usage
-- Add your income and expenses using the forms on the homepage.
-- View expense summaries and charts for insights.
-- Use the savings calculator to plan your savings.
-- Generate a personalized budget plan using AI recommendations.
