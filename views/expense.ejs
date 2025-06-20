@@ -1,0 +1,27 @@
+<%- include('partials/header.ejs'); -%>
+
+<div id="expense-form">
+    <form action="/newexpense" method="post">
+        <p>Enter Amount</p>
+        <input type="number" name="expenseamount" required>
+
+        <p>Category</p>
+        <div class="category-buttons">
+            <% const categories = ["Rent", "Electricity", "Water", "Gas", "Groceries", "Entertainment", "Phone Recharge", "Other"]; %>
+            <% categories.forEach(category => { %>
+                <label class="button-4">
+                    <input type="radio" name="expensecategory" value="<%= category %>" required>
+                    <%= category %>
+                </label>
+            <% }); %>
+        </div>
+
+        <p>Notes</p>
+        <textarea name="expensenotes" rows="5" cols="33"></textarea>
+
+        <br><br>
+        <input type="submit" value="Add Expense" class="button-4">
+    </form>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

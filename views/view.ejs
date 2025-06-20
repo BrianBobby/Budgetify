@@ -1,0 +1,26 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+    <div class="expense-list">
+        <h2>Total Expenses:</h2>
+        <% if (totalExpenses.length > 0) { %>
+            <% totalExpenses.forEach(expense => { %>
+                <div class="expense-item">
+                    <h3><%= expense.expensecategory %></h3>
+                    <h3><span class="currency-symbol">₹</span> <%= expense.totalamount %></h3>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p>No expenses recorded yet.</p>
+        <% } %>
+    </div>
+    <br>
+
+    <div>
+        <form action="/" method="get">
+            <input type="submit" value="Back to Home">
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

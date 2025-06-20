@@ -1,0 +1,354 @@
+/* General Body Styling */
+body {
+    background-color: #f3fdf3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* Container Styling with Top Margin */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+h1, h2 {
+    color: #2e7d32;
+    font-size: 2.5em;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.container .logo {
+    display: flex;
+    align-items: center;  /* Vertically centers the items */
+    justify-content: center; /* Centers the items horizontally */
+    gap: 10px;  /* Adds some space between the logo and the header */
+}
+/* Logo Styling */
+.container img {
+    height: 5em;
+    vertical-align: middle;
+}
+
+/* Form Styling */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form p {
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+input[type="number"], input[type="text"], textarea, input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* New Button Styling */
+.button-33 {
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset, rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px, rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px, rgba(44, 187, 99, 0.15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-33:hover {
+    box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset, rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px, rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px, rgba(44, 187, 99, 0.25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+}
+
+/* Additional Styling for Form Buttons */
+input[type="submit"], input[type="button"] {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 0;
+    transition: all 250ms;
+}
+
+/* Radio Buttons Styling */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-button {
+    display: inline-block;
+    margin: 5px 10px;
+    color: #2e7d32;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Summary Section */
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    color: #2e7d32;
+}
+
+.summary-item {
+    padding: 15px;
+    background-color: #e8f5e9;
+    border: 2px solid #2e7d32;
+    border-radius: 8px;
+    margin: 10px;
+    flex: 1 1 45%;
+    box-sizing: border-box;
+}
+
+#total-income, #total-savings {
+    font-weight: bold;
+}
+
+/* Expense List */
+.expense-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    color: #2e7d32;
+}
+
+.expense-item {
+    padding: 10px;
+    border: 2px solid #2e7d32;
+    border-radius: 8px;
+    margin: 10px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f8e9;
+}
+
+/* Currency Symbol Styling */
+.currency-symbol {
+    font-size: 1.5em;
+    color: #888;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.budget-table th, .budget-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.budget-table th {
+    background-color: #2e7d32;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.budget-table td {
+    background-color: #f1f8e9;
+    color: #333;
+}
+
+.budget-table tr:nth-child(even) td {
+    background-color: #e8f5e9;
+}
+
+/* Styling for Recommended and Current Amounts */
+.recommended-amount {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.current-amount {
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Button styling for Back to Home */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #2e7d32;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #1e5c24;
+}
+
+/* No data message styling */
+.no-data {
+    color: #d32f2f;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .summary-container,
+    .expense-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .summary-item,
+    .expense-item {
+        width: 100%;
+    }
+
+    .chart-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .budget-table th, .budget-table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+}
+
+/* Chart Styling */
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+    margin-top: 20px;
+}
+
+#expenseChart,
+#dailyExpensesChart {
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f3fdf3;
+    font-size: 0.9em;
+    color: #888;
+}
+
+#result {
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* CSS for other buttons */
+.button-4 {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.button-4:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+.button-4:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.button-4:focus {
+    outline: 1px transparent;
+}
+
+.button-4:before {
+    display: none;
+}
+
+.button-4:-webkit-details-marker {
+    display: none;
+}

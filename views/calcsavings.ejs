@@ -1,0 +1,78 @@
+<%- include('partials/header.ejs'); -%>
+
+<div>
+    <h2>How Much Do You Want to Save?</h2>
+    <form>
+        <label for="saveAmount">Target Amount to Save:</label>
+        <input type="number" id="saveAmount" name="saveAmount" required>
+        <br><br>
+
+        <label for="savedAlready">Amount Already Saved:</label>
+        <input type="number" id="savedAlready" name="savedAlready" required>
+        <br><br>
+
+        <label for="saveDate">Target Date (MM/DD/YYYY):</label>
+        <input type="date" id="saveDate" name="saveDate" required>
+        <br><br>
+
+        <input type="button" value="Submit" onclick="handleSubmit()">
+    </form>
+</div>
+
+<!-- Paragraph to display the result -->
+<div id="result"></div>
+
+<div>
+    <form action="/" method="get">
+        <input type="submit" value="Back to Home">
+    </form>
+</div>
+
+<script>
+    function handleSubmit() {
+        const targetAmount = parseFloat(document.getElementById('saveAmount').value);
+        const alreadySaved = parseFloat(document.getElementById('savedAlready').value);
+        const targetDate = document.getElementById('saveDate').value;
+
+        // Get the current date
+        const currentDate = new Date();
+        
+        // Convert the target date input to a Date object
+        const targetDateObj = new Date(targetDate);
+        
+        // Calculate the difference in time between the current date and the target date
+        const timeDifference = targetDateObj.getTime() - currentDate.getTime();
+        
+        // Convert time difference to number of months (approximate)
+        const monthsLeft = timeDifference / (1000 * 60 * 60 * 24 * 30.4375); // Average days in a month
+
+        // Calculate the amount left to save
+        const amountLeftToSave = targetAmount - alreadySaved;
+
+        // Calculate the monthly savings required
+        let monthlySavings;
+        if (monthsLeft > 0) {
+            monthlySavings = Math.ceil(amountLeftToSave / monthsLeft);  // Round up to the nearest integer
+        } else {
+            monthlySavings = Math.ceil(amountLeftToSave);
+        }
+
+        // Get the result div and update its content
+        const resultDiv = document.getElementById('result');
+
+        if (monthlySavings > 0) {
+            // Format the target date as "December 9, 2024"
+            const formattedDate = targetDateObj.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            resultDiv.innerHTML = `<p>You need to save ₹${monthlySavings} per month to reach your goal of ₹${targetAmount} by ${formattedDate}.</p>`;
+        } else {
+            resultDiv.innerHTML = "<p>Your goal date is too soon or you've already saved enough!</p>";
+        }
+    }
+</script>
+
+<%- include('partials/footer.ejs'); -%>

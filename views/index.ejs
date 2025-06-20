@@ -1,0 +1,176 @@
+<%- include('partials/header.ejs'); -%>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container">
+    <div class="logo">
+        <img src="/assets/icons/logo-black.png">
+        <h1>Budgetify</h1>
+    </div>
+
+    <!-- Form buttons for Income, Expense, and Calculators -->
+    <div class="form-buttons-container">
+        <form action="/income" method="post">
+            <input type="submit" name="add" value="INCOME" class="button-33" role="button">
+        </form>
+        
+        <form action="/expense" method="post">
+            <input type="submit" name="add" value="EXPENSE" class="button-33" role="button">
+        </form>
+        
+        <form action="/viewexpense" method="post">
+            <input type="submit" name="add" value="VIEW EXPENSES" class="button-33" role="button">
+        </form>
+        
+        <form action="/savingscalculator" method="post">
+            <input type="submit" name="add" value="SAVINGS CALCULATOR" class="button-33" role="button">
+        </form>
+        
+        <form action="/generatebudget" method="post">
+            <input type="submit" name="add" value="GENERATE BUDGET" class="button-33" role="button">
+        </form>        
+    </div>
+
+    <br><br>
+    <!-- Income and Expenses Summary -->
+    <div class="summary-container">
+        <div id="total-income" class="summary-item">
+            <span class="currency-symbol">₹</span><h2>Total Income: <%= totalIncome %></h2>
+        </div>
+        <div id="total-savings" class="summary-item">
+            <span class="currency-symbol">₹</span><h2>Total Savings: <%= totalSavings || 0 %></h2>
+        </div>
+    </div>
+
+    <!-- Charts Container -->
+    <div class="chart-container">
+        <!-- Expense Chart -->
+        <% if (totalExpenses && totalExpenses.length > 0) { %>
+            <div>
+                <canvas id="expenseChart"></canvas>
+            </div>
+        <% } %>
+
+        <!-- Daily Expenses Chart -->
+        <% if (dailyExpenses && dailyExpenses.length > 0) { %>
+            <div>
+                <canvas id="dailyExpensesChart" width="600" height="400"></canvas>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Expense Chart
+        const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+        const expenseData = {
+            labels: [
+                <% totalExpenses.forEach(expense => { %>
+                    '<%= expense.expensecategory %>',
+                <% }); %>
+            ],
+            datasets: [{
+                label: 'Expense Distribution',
+                data: [
+                    <% totalExpenses.forEach(expense => { %>
+                        <%= expense.totalamount %>,
+                    <% }); %>
+                ],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(211, 211, 211, 0.2)',
+                    'rgba(255, 105, 180, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(169, 169, 169, 1)',
+                    'rgba(255, 105, 180, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(expenseCtx, {
+            type: 'pie',
+            data: expenseData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const label = tooltipItem.label || '';
+                                const value = tooltipItem.raw;
+                                return `${label}: ₹${value}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Daily Expenses Chart
+        const dailyCtx = document.getElementById('dailyExpensesChart').getContext('2d');
+        const dailyData = {
+            labels: [
+                <% dailyExpenses.forEach(expense => { %>
+                    '<%= new Date(expense.date).toLocaleDateString() %>',
+                <% }); %>
+            ],
+            datasets: [{
+                label: 'Daily Expenses',
+                data: [
+                    <% dailyExpenses.forEach(expense => { %>
+                        <%= expense.amount %>,
+                    <% }); %>
+                ],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(dailyCtx, {
+            type: 'line',
+            data: dailyData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                const label = tooltipItem.label || '';
+                                const value = tooltipItem.raw;
+                                return `${label}: ₹${value}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<%- include('partials/footer.ejs'); -%>
