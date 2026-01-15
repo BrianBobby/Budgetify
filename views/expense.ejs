@@ -1,0 +1,45 @@
+<%- include('partials/header.ejs'); -%>
+
+<div id="expense-form">
+    <form action="/newexpense" method="post">
+        <p>Enter Amount</p>
+        <input type="number" name="expenseamount" required>
+
+        <p>Category</p>
+        <fieldset style="border: 0px;">
+            <div>
+                <input type="radio" name="expensecategory" id="rent" value="Rent" required />
+                <label for="rent" class="expense-category-button">Rent</label>
+
+                <input type="radio" name="expensecategory" id="electricity" value="Electricity" />
+                <label for="electricity" class="expense-category-button">Electricity</label>
+
+                <input type="radio" name="expensecategory" id="water" value="Water" />
+                <label for="water" class="expense-category-button">Water</label>
+
+                <input type="radio" name="expensecategory" id="gas" value="Gas" />
+                <label for="gas" class="expense-category-button">Gas</label>
+
+                <input type="radio" name="expensecategory" id="phone-recharge" value="Phone Recharge" />
+                <label for="phone-recharge" class="expense-category-button">Phone Recharge</label>
+
+                <input type="radio" name="expensecategory" id="entertainment" value="Entertainment" />
+                <label for="entertainment" class="expense-category-button">Entertainment</label>
+
+                <input type="radio" name="expensecategory" id="groceries" value="Groceries" />
+                <label for="groceries" class="expense-category-button">Groceries</label>
+
+                <input type="radio" name="expensecategory" id="other" value="Other" />
+                <label for="other" class="expense-category-button">Other</label>
+            </div>
+        </fieldset>
+
+        <p>Notes</p>
+        <textarea name="expensenotes" rows="5" cols="33"></textarea>
+
+        <br><br>
+        <input type="submit" value="Add Expense">
+    </form>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

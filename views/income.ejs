@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+    <h1>Add New Income</h1>
+    <form action="/newincome" method="post">
+        <p>Enter Amount</p>
+        <input type="number" name="incomeamount" required>
+
+        <p>Category</p>
+        <input type="text" name="incomecategory" required>
+
+        <p>Notes</p>
+        <textarea name="incomenotes" rows="5" cols="33"></textarea>
+
+        <input type="submit" value="Add Income">
+    </form>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

@@ -1,0 +1,77 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+  <h1>Your Expenses</h1>
+
+  <!-- Optional summary area (grouped totals) -->
+  <% if (totalExpenses && totalExpenses.length > 0) { %>
+    <div class="summary-container" style="margin-bottom:12px;">
+      <% totalExpenses.slice(0,4).forEach(function(item){ %>
+        <div class="summary-item" style="flex: 1 1 22%; min-width:120px;">
+          <div class="small text-muted"><%= item.expensecategory %></div>
+          <div style="font-weight:700; margin-top:6px;">₹<%= parseFloat(item.totalamount).toFixed(2) %></div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <div class="table-wrapper">
+    <% if (transactions && transactions.length > 0) { %>
+      <table class="expense-table" style="width:100%; border-collapse:collapse; min-width:720px;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:12px 16px;">Date &amp; Time</th>
+            <th style="text-align:left; padding:12px 16px;">Category</th>
+            <th style="text-align:right; padding:12px 16px;">Amount</th>
+            <th style="text-align:left; padding:12px 16px;">Notes</th>
+            <th style="text-align:center; padding:12px 16px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transactions.forEach(function(tx) { %>
+            <tr>
+              <td style="padding:10px 16px; white-space:nowrap;">
+                <% if (tx.expensedate) { %>
+                  <%= new Date(tx.expensedate).toLocaleString() %>
+                <% } else { %>
+                  <span class="text-muted small">No date</span>
+                <% } %>
+              </td>
+
+              <td style="padding:10px 16px; font-weight:600; color:#163a12;">
+                <%= tx.expensecategory || 'Other' %>
+              </td>
+
+              <td style="padding:10px 16px; text-align:right; white-space:nowrap; font-variant-numeric: tabular-nums;">
+                <span class="currency-symbol">₹</span> <%= Number(tx.amount).toFixed(2) %>
+              </td>
+
+              <td style="padding:10px 16px; color:#6b6b6b;">
+                <%= tx.notes ? tx.notes : '-' %>
+              </td>
+
+              <td style="padding:10px 16px; text-align:center;">
+                <form action="/expense/delete" method="post" onsubmit="return confirm('Delete this expense?');" style="display:inline;">
+                  <input type="hidden" name="id" value="<%= tx.expenseid %>">
+                  <button type="submit" class="button-33" style="padding:6px 10px; font-size:14px;">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No expenses recorded yet.</p>
+    <% } %>
+  </div>
+
+  <br>
+
+  <div>
+    <form action="/" method="get">
+      <input type="submit" value="Back to Home" class="btn">
+    </form>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs'); -%>
